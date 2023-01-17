@@ -147,7 +147,7 @@
     }
 
     .form-container .btn {
-       padding-top: 128px;
+       padding-top: 125px;
 
     }
 
@@ -283,7 +283,7 @@
 
       
     .submit-section {
-        padding-top: 99px;
+        padding-top: 90px;
     }
  
      .submit-section .btn-2 button {
@@ -345,7 +345,7 @@
      }
 
      .submit-section {
-        padding-top: 145px;
+        padding-top: 147px;
      }
 
 }
@@ -434,7 +434,7 @@
     }
 
     .submit-section-3 {
-        padding-top: 110px;
+        padding-top: 103px;
      }
      .submit-section-3 .btn-2 button {
         border-radius: 5px;
@@ -469,7 +469,7 @@
     }
 
     .submit-section-3 {
-       padding-top: 150px;
+       padding-top: 149px;
     }
 }  
 
@@ -486,7 +486,7 @@
 
 @media only screen and (max-width: 835px) {
     .form-4 .submit-section-3 {
-        padding-top: 80px;
+        padding-top: 70px;
     }
     .summary-container {
         margin-top: 5px;
@@ -505,7 +505,7 @@
 
 @media only screen and (max-width: 375px) {
     .form-4 .submit-section-3 {
-        padding-top: 120px;
+        padding-top: 117px;
     }
 }
 

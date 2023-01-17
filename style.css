@@ -32,6 +32,10 @@ p {
     display: none;
 }
 
+.highlight-plan {
+    border: 1px solid darkblue !important;
+}
+
 /******************   Step 1   ***********************/
 
 .container {
@@ -474,7 +478,7 @@ input:checked + .slider:before {
 
 .online, .storage, .customize {
     padding-top: 18px;
-    /* visibility: hidden; */
+    visibility: hidden;
 }
 
 .online h3, .storage h3, .customize h3{
