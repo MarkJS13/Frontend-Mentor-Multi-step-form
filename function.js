@@ -51,37 +51,6 @@ check3.addEventListener('change', () => {
     }
 })
 
-/*
-
-const checkboxes = document.querySelectorAll('.layer .check input');
-checkboxes.forEach(check => {
-    check.addEventListener('change', e => {
-        const c1 = e.target.classList.contains('check1');
-        const c2 = e.target.classList.contains('check1');
-        const c3 = e.target.classList.contains('check1');
-
-         if(c1 && c2 && c3) {
-            console.log('+100')
-        }
-    })
-})
-
-
-const computeTotal = (checkboxValue) => {
- 
-    if(checkboxValue === 'yearly') {
-            if(check1.checked) {
-                console.log('+19');
-            } 
-    } else if(checkboxValue === 'monthly') {
-
-    }
-}
-
-
-*/
-
-
 
 
 
@@ -91,18 +60,18 @@ const step2Switch = (checkboxValue) => {
     const block2__text = document.querySelector('.block2 h3');
     const block3__text = document.querySelector('.block3 h3');
 
-
+   
     if(checkboxValue === 'yearly') {
         blocks.forEach(b => {
-            console.log(b.children[3].textContent = '2 months free');
+            b.children[3].textContent = '2 months free';
         })
         block1__text.textContent = '$90/yr';
         block2__text.textContent = '$120/yr';
         block3__text.textContent = '$150/yr';
     } else {
         block1__text.textContent = '$9/mo';
-        block2__text.textContent = '$9/mo';
-        block3__text.textContent = '$9/mo';
+        block2__text.textContent = '$12/mo';
+        block3__text.textContent = '$15/mo';
         
         blocks.forEach(b => {
             b.children[3].textContent = '';
@@ -110,7 +79,10 @@ const step2Switch = (checkboxValue) => {
 
     }
 
+
+    
 }
+
 
 const blocks = document.querySelectorAll('.block'); 
 const block1 = document.querySelector('.grid-layout .block1');
@@ -120,28 +92,56 @@ const block3 = document.querySelector('.grid-layout .block3');
 
 blocks.forEach(p => {
     const display = document.querySelector('.summary .arcade .text h3 .promo-plan');
+    
     p.addEventListener('click', e => {
         if(e.target.classList.contains('block1')) {
             block1.classList.add('highlight-plan');
             block2.classList.remove('highlight-plan');
             block3.classList.remove('highlight-plan');
-            display.innerHTML = 'Arcade';
+            display.textContent = 'Arcade';
         } else if(e.target.classList.contains('block2')) {
             block2.classList.add('highlight-plan');
             block1.classList.remove('highlight-plan');
             block3.classList.remove('highlight-plan');
-            display.innerHTML = 'Advanced';
+            display.textContent = 'Advanced';
         } else if(e.target.classList.contains('block3')) {
             block3.classList.add('highlight-plan');
             block1.classList.remove('highlight-plan');
             block2.classList.remove('highlight-plan');
-            display.innerHTML = 'Pro';
+            display.textContent = 'Pro';
         }
         
     })
 })
 
 
+const plan = (checkboxValue) => {
+
+    const planPrice = document.querySelector('#form-container > div.form-container.form-4 > div.summary-container > div > div.arcade > div.price > h3 > span.value')
+    blocks.forEach(p => {
+        p.addEventListener('click', e => {
+            if(checkboxValue === 'yearly') {
+                if(e.target.classList.contains('block1')) {
+                    planPrice.textContent = '$90'
+                } else if(e.target.classList.contains('block2')) {
+                    planPrice.textContent = '$120'
+                } else if(e.target.classList.contains('block3')) {
+                    planPrice.textContent = '$150'
+                }
+            } else if(checkboxValue === 'monthly') {
+                if(e.target.classList.contains('block1')) {
+                    planPrice.textContent = '$9'
+                } else if(e.target.classList.contains('block2')) {
+                    planPrice.textContent = '$12'
+                } else if(e.target.classList.contains('block3')) {
+                    planPrice.textContent = '$15'
+                }
+            } 
+
+         })
+    })
+}
+    
 
 const step3Switch = (checkboxValue) => {
     const price = document.querySelectorAll('.layer .price h3');
@@ -158,29 +158,37 @@ const step3Switch = (checkboxValue) => {
         price[2].textContent = '+$2/mo';
         duration.textContent = '/mo';
     }
+
+
+    
 }
 
 
 
+const price = document.querySelectorAll('.summary .price h3');
+price.forEach(e=> {
+    console.log(e)
+})
 
 const step4Switch = (checkboxValue) => {
     const price = document.querySelectorAll('.summary .price h3');
-    const total = document.querySelector('.total .price h1');
+    const totalDur = document.querySelector('#form-container > div.form-container.form-4 > div.total > div.price > h1 > span.duration-2')
     const totalSpan = document.querySelector('.total .text h3 span');
     const span = document.querySelector('.summary .arcade .text h3 .duration');
+    
     if(checkboxValue === 'yearly') {
-        price[1].textContent = '+$90/yr';
-        price[2].textContent = '+$10/yr';
+        price[1].textContent = '+$10/yr';
+        price[2].textContent = '+$20/yr';
         price[3].textContent = '+$20/yr';
-        total.textContent = '+$129/yr';
         span.textContent = '(Yearly)';
+        totalDur.textContent = '/yr';
         totalSpan.textContent = '(per year)';
     } else if (checkboxValue === 'monthly') {
-        price[1].textContent = '+9/mo';
-        price[2].textContent = '+$1/mo';
+        price[1].textContent = '+$1/mo';
+        price[2].textContent = '+$2/mo';
         price[3].textContent = '+$2/mo';
-        total.textContent = '+$21/mo';
         span.textContent = '(Monthly)';
+        totalDur.textContent = '/mo';
         totalSpan.textContent = '(per month)';
     }
 }
@@ -201,15 +209,79 @@ const switchers = (checkboxValue) => {
 
 
 
+
+const submitTotal = (checkboxValue) => {
+    const submit = document.querySelector('#form-container > div.form-container.form-3.hide-form > div.submit-section-3 > div.btn-2 > button');
+    const total = document.querySelector('#form-container > div.form-container.form-4 > div.total > div.price > h1 > span.value-2')
+    
+    submit.addEventListener('click', () => {
+
+        if(checkboxValue === 'yearly') {
+            if(block1.classList.contains('highlight-plan')) {   //ARCADE
+                if(layer1.classList.contains('checked') ) {
+                    total.textContent = '+$100';
+                } else if(layer2.classList.contains('checked') || layer3.classList.contains('checked') ) {
+                    total.textContent = '+$110';
+                } 
+
+            } else if(block2.classList.contains('highlight-plan')) {   //ADVANCED
+                if(layer1.classList.contains('checked') ) {
+                    total.textContent = '+$130';
+                } else if(layer2.classList.contains('checked') || layer3.classList.contains('checked') ) {
+                    total.textContent = '+$140';
+                } 
+
+            } else if(block3.classList.contains('highlight-plan')) {   //PRO
+                if(layer1.classList.contains('checked') ) {
+                    total.textContent = '+$160';
+                } else if(layer2.classList.contains('checked') || layer3.classList.contains('checked') ) {
+                    total.textContent = '+$170';
+                } 
+
+            }
+
+        } else if(checkboxValue === 'monthly') {
+            if(block1.classList.contains('highlight-plan')) {   //ARCADE
+                if(layer1.classList.contains('checked') ) {
+                    total.textContent = '+$10';
+                } else if(layer2.classList.contains('checked') || layer3.classList.contains('checked') ) {
+                    total.textContent = '+$11';
+                } 
+
+            } else if(block2.classList.contains('highlight-plan')) {   //ADVANCED
+                if(layer1.classList.contains('checked') ) {
+                    total.textContent = '+$13';
+                } else if(layer2.classList.contains('checked') || layer3.classList.contains('checked') ) {
+                    total.textContent = '+$14';
+                } 
+
+            } else if(block3.classList.contains('highlight-plan')) {   //PRO
+                if(layer1.classList.contains('checked') ) {
+                    total.textContent = '+$16';
+                } else if(layer2.classList.contains('checked') || layer3.classList.contains('checked') ) {
+                    total.textContent = '+$17';
+                } 
+
+            }
+
+        } 
+    })
+
+
+}   
+
+
+
 input.addEventListener('change', e => {
     const checkboxValue = e.target.checked ? 'yearly' : 'monthly';
-    
+
+    plan(checkboxValue)
     switchers(checkboxValue);
     step2Switch(checkboxValue);
     step3Switch(checkboxValue);
     step4Switch(checkboxValue);
-    computeTotal(checkboxValue)
+    submitTotal(checkboxValue);
+    
 })
-
 
 
